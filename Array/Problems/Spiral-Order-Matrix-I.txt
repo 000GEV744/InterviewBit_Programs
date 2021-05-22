@@ -1,0 +1,63 @@
+public class Solution {
+    // DO NOT MODIFY THE LIST. IT IS READ ONLY
+    public ArrayList<Integer> spiralOrder(final List<ArrayList<Integer>> A) {
+        
+        int top = 0, down = (A.size()-1);
+        int left = 0, right = (A.get(0).size()-1);
+        int dir = 0;
+        ArrayList<Integer> ans = new ArrayList<Integer>();
+        
+        
+        while(top<=down && left<=right)
+        {
+            if(dir == 0)
+           { 
+                for(int i = left; i<=right; i++){
+                    ans.add(A.get(top).get(i));
+                }
+                top++;
+            }
+            
+            else if(dir == 1)
+            {               
+                for(int i = top; i<=down; i++){
+                    ans.add(A.get(i).get(right));
+                }
+                right--;
+            }
+            
+            else if(dir == 2){
+                for(int i = right; i>=left; i--){
+                    ans.add(A.get(down).get(i));
+                }
+                down--;
+            }
+            
+            else{
+                for(int i = down; i>=top; i--){
+                    ans.add(A.get(i).get(left));
+                }
+                left++;
+            }
+            
+            dir = (dir+1)%4;
+        }
+        
+        return ans;
+    }
+}
+
+
+/*
+
+To achieve the spiral traversing in to the matrix
+dir = represents the direction which we need to move.
+0 : left to right
+1 : top to down
+2 : right to left
+3 : down to top 
+
+and four pointers which will point the four corners in the 
+matrix.
+
+*/
